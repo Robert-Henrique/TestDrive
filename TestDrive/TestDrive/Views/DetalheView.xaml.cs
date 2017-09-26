@@ -40,6 +40,31 @@ namespace TestDrive.Views
             }
         }
 
+        bool temFreioABS;
+        public bool TemFreioABS
+        {
+            get
+            {
+                return temFreioABS;
+            }
+
+            set
+            {
+                temFreioABS = value;
+                OnPropertyChanged(nameof(ValorTotal));
+            }
+        }
+
+        public string ValorTotal
+        {
+            get
+            {
+                return string.Format("Valor total: R$ {0}", 
+                    Veiculo.Preco 
+                    + (temFreioABS ? FREIO_ABS : 0));
+            }
+        }
+
         public DetalheView(Veiculo veiculo)
         {
             InitializeComponent();
