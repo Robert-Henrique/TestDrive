@@ -9,13 +9,15 @@ using Xamarin.Forms.Xaml;
 
 namespace TestDrive.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AgendamentoView : ContentPage
 	{
-		public AgendamentoView (Veiculo veiculo)
+        public Veiculo Veiculo { get; set; }
+
+        public AgendamentoView (Veiculo veiculo)
 		{
 			InitializeComponent ();
-            this.Title = veiculo.Nome;
+            this.Veiculo = veiculo;
+            this.BindingContext = this;
 		}
 	}
 }

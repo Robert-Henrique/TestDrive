@@ -15,8 +15,8 @@ namespace TestDrive.Views
         public DetalheView (Veiculo veiculo)
 		{
 			InitializeComponent ();
-            this.Title = veiculo.Nome;
             this.Veiculo = veiculo;
+            this.BindingContext = this;
 		}
 
         private void buttonProximo_Clicked(object sender, EventArgs e)
