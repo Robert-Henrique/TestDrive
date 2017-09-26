@@ -3,9 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="{Binding Veiculo.Nome}"
              x:Class="TestDrive.Views.DetalheView">
-    <Button x:Name="buttonProximo" 
+
+    <StackLayout Padding="25">
+
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Acessórios">
+                    <SwitchCell Text="Freio ABS - R$ 800" On="True"></SwitchCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Button x:Name="buttonProximo" 
             Text="Próximo"
             Clicked="buttonProximo_Clicked" 
             VerticalOptions="End">
-    </Button>
+        </Button>
+    </StackLayout>
 </ContentPage>
