@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TestDrive
+namespace TestDrive.Views
 {
 
     public class Veiculo
@@ -18,11 +18,11 @@ namespace TestDrive
         }
     }
 
-    public partial class MainPage : ContentPage
+    public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
 
-        public MainPage()
+        public ListagemView()
         {
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace TestDrive
         {
             var veiculo = (Veiculo)e.Item;
 
-            DisplayAlert("Test Drive", string.Format("Você selecionou o modelo '{0}', que custa '{1}'", veiculo.Nome, veiculo.PrecoFormatado), "Ok");
+            Navigation.PushAsync(new DetalheView());
         }
     }
 }
