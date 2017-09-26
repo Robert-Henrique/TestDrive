@@ -12,15 +12,19 @@ namespace TestDrive
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }
+        public string PrecoFormatado
+        {
+            get { return string.Format("R$ {0}", Preco);  }
+        }
     }
 
-	public partial class MainPage : ContentPage
-	{
+    public partial class MainPage : ContentPage
+    {
         public List<Veiculo> Veiculos { get; set; }
 
         public MainPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             this.Veiculos = new List<Veiculo>
             {
@@ -30,6 +34,13 @@ namespace TestDrive
             };
 
             this.BindingContext = this;
-		}
-	}
+        }
+
+        private void listViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var veiculo = (Veiculo)e.Item;
+
+            DisplayAlert("Test Drive", string.Format("Você selecionou o modelo '{0}', que custa '{1}'", veiculo.Nome, veiculo.PrecoFormatado), "Ok");
+        }
+    }
 }
