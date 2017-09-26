@@ -29,7 +29,7 @@ namespace TestDrive
                 new Veiculo {Nome = "HB20 S", Preco = 40000 },
             };
 
-            listViewVeiculos.ItemsSource = this.Veiculos;
+            this.BindingContext = this;
 		}
 	}
 }

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TestDrive"
              x:Class="TestDrive.MainPage">
 
-    <ListView x:Name="listViewVeiculos">
+    <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
