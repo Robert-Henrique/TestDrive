@@ -4,8 +4,7 @@
              xmlns:local="clr-namespace:TestDrive"
              x:Class="TestDrive.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-
+    <ListView x:Name="listViewVeiculos">
+        
+    </ListView>
 </ContentPage>
