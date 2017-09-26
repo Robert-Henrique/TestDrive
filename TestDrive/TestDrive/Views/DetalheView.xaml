@@ -10,6 +10,9 @@
             <TableRoot>
                 <TableSection Title="Acessórios">
                     <SwitchCell Text="Freio ABS - R$ 800" On="True"></SwitchCell>
+                    <SwitchCell Text="Ar Condicionado - R$ 1000"></SwitchCell>
+                    <SwitchCell Text="MP3 Player - R$ 500"></SwitchCell>
+                    <TextCell Text="Total: R$ 50000"></TextCell>
                 </TableSection>
             </TableRoot>
         </TableView>
