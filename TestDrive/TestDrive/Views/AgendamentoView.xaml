@@ -6,12 +6,23 @@
     <TableView>
         <TableRoot>
             <TableSection Title="Seus Dados">
-                <EntryCell Label="Nome:"></EntryCell>
-                <EntryCell Label="Fone:" Keyboard="Telephone"></EntryCell>
-                <EntryCell Label="E-mail:" Keyboard="Email"></EntryCell>
+                <EntryCell Label="Nome:" Text="{Binding Nome}"></EntryCell>
+                <EntryCell Label="Fone:" Keyboard="Telephone" Text="{Binding Fone}"></EntryCell>
+                <EntryCell Label="E-mail:" Keyboard="Email" Text="{Binding Email}"></EntryCell>
             </TableSection>
             <TableSection Title="Agendamento">
-
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                        <Label Text="Data:"></Label>
+                        <DatePicker></DatePicker>
+                    </StackLayout>
+                </ViewCell>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                        <Label Text="Hora:"></Label>
+                        <TimePicker></TimePicker>
+                    </StackLayout>
+                </ViewCell>
             </TableSection>
         </TableRoot>
     </TableView>
