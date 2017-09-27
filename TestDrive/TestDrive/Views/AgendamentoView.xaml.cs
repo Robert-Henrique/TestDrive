@@ -37,5 +37,11 @@ namespace TestDrive.Views
             this.Veiculo = veiculo;
             this.BindingContext = this;
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            string mensagem = string.Format("Nome: {0} Fone: {1} E-mail: {2} Data Agendamento: {3} Hora Agendamento: {4}", Nome, Fone, Email, DataAgendamento.ToString("dd/MM/yyyy"), HoraAgendamento);
+            DisplayAlert("Agendamento", mensagem, "Ok");
+        }
     }
 }
