@@ -3,5 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="{Binding Veiculo.Nome}"
              x:Class="TestDrive.Views.AgendamentoView">
-    
+    <TableView>
+        <TableRoot>
+            <TableSection Title="Seus Dados">
+                <EntryCell Label="Nome:"></EntryCell>
+                <EntryCell Label="Fone:" Keyboard="Telephone"></EntryCell>
+                <EntryCell Label="E-mail:" Keyboard="Email"></EntryCell>
+            </TableSection>
+            <TableSection Title="Agendamento">
+
+            </TableSection>
+        </TableRoot>
+    </TableView>
 </ContentPage>
