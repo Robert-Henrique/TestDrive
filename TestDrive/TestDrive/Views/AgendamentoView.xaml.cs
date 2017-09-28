@@ -11,30 +11,85 @@ namespace TestDrive.Views
 {
     public partial class AgendamentoView : ContentPage
     {
-        public Veiculo Veiculo { get; set; }
-        public string Nome { get; set; }
-        public string Fone { get; set; }
-        public string Email { get; set; }
+        public Agendamento Agendamento { get; set; }
 
-        DateTime dataAgendamento = DateTime.Now;
+        public Veiculo Veiculo
+        {
+            get
+            {
+                return Agendamento.Veiculo;
+            }
+            set
+            {
+                Agendamento.Veiculo = value;
+            }
+        }
+
+        public string Nome
+        {
+            get
+            {
+                return Agendamento.Nome;
+            }
+            set
+            {
+                Agendamento.Nome = value;
+            }
+        }
+
+        public string Fone
+        {
+            get
+            {
+                return Agendamento.Fone;
+            }
+            set
+            {
+                Agendamento.Fone = value;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return Agendamento.Email;
+            }
+            set
+            {
+                Agendamento.Email = value;
+            }
+        }
+
         public DateTime DataAgendamento
         {
             get
             {
-                return dataAgendamento;
+                return Agendamento.DataAgendamento;
             }
             set
             {
-                dataAgendamento = value;
+                Agendamento.DataAgendamento = value;
             }
         }
 
-        public TimeSpan HoraAgendamento { get; set; }
+        public TimeSpan HoraAgendamento
+        {
+            get
+            {
+                return Agendamento.HoraAgendamento;
+            }
+            set
+            {
+                Agendamento.HoraAgendamento = value;
+            }
+        }
 
         public AgendamentoView(Veiculo veiculo)
         {
             InitializeComponent();
-            this.Veiculo = veiculo;
+            this.Agendamento = new Agendamento();
+            this.Agendamento.Veiculo = veiculo;
             this.BindingContext = this;
         }
 
