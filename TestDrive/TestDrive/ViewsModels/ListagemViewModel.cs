@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -39,6 +40,14 @@ namespace TestDrive.ViewsModels
         {
             HttpClient cliente = new HttpClient();
             var resultado = await cliente.GetStringAsync(URL_GET_VEICULOS);
+
+            var veiculosJson = JsonConvert.DeserializeObject<VeiculoJson[]>(resultado);
         }
+    }
+
+    public class VeiculoJson
+    {
+        public string nome { get; set; }
+        public int preco { get; set; }
     }
 }
