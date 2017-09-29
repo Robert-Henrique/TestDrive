@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ListagemVeiculos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Veiculo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\AgendamentoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\DetalheViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\ListagemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AgendamentoView.xaml.cs">
