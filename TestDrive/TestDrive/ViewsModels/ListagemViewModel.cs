@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TestDrive.Models;
+using Xamarin.Forms;
 
 namespace TestDrive.ViewsModels
 {
@@ -19,6 +20,9 @@ namespace TestDrive.ViewsModels
             set
             {
                 veiculoSelecionado = value;
+
+                if (veiculoSelecionado != null)
+                    MessagingCenter.Send(veiculoSelecionado, "VeiculoSelecionado");
             }
         }
 
