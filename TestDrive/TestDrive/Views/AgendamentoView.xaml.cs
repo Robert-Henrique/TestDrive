@@ -31,9 +31,18 @@ namespace TestDrive.Views
 
                 if (confirma)
                 {
-                    string mensagem = string.Format("Nome: {0} Fone: {1} E-mail: {2} Data Agendamento: {3} Hora Agendamento: {4}", agendamento.Nome, agendamento.Fone, agendamento.Email, agendamento.DataAgendamento.ToString("dd/MM/yyyy"), agendamento.HoraAgendamento);
-                    DisplayAlert("Agendamento", mensagem, "Ok");
+                    this.ViewModel.SalvarAgendamento();
                 }
+            });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Agendamento salvo com sucesso", "Ok");
+            });
+
+            MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento", "Falha ao agendar o test drive! Verifique os dados e tente novamente mais tarde.", "Ok");
             });
         }
 
@@ -41,6 +50,8 @@ namespace TestDrive.Views
         {
             base.OnDisappearing();
             MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "SucessoAgendamento");
+            MessagingCenter.Unsubscribe<ArgumentException>(this, "FalhaAgendamento");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using TestDrive.Models;
@@ -9,6 +10,8 @@ namespace TestDrive.ViewsModels
 {
     public class AgendamentoViewModel
     {
+        const string URL_POST_AGENDAMENTO = "https://aluracar.herokuapp.com/salvaragendamento";
+
         public Agendamento Agendamento { get; set; }
 
         public Veiculo Veiculo
@@ -94,6 +97,19 @@ namespace TestDrive.ViewsModels
             {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "Agendamento");
             });
+        }
+
+        public async void SalvarAgendamento()
+        {
+            HttpClient cliente = new HttpClient();
+            var conteudo = new StringContent("", Encoding.UTF8, "application/json");
+
+            var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
+
+            if (resposta.IsSuccessStatusCode)
+                MessagingCenter.Send<Agendamento>(this.Agendamento, "SucessoAgendamento");
+            else
+                MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");
         }
     }
 }
