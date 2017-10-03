@@ -25,10 +25,15 @@ namespace TestDrive.Views
         {
             base.OnAppearing();
 
-            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (agendamento) =>
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", async (agendamento) =>
             {
-                string mensagem = string.Format("Nome: {0} Fone: {1} E-mail: {2} Data Agendamento: {3} Hora Agendamento: {4}", agendamento.Nome, agendamento.Fone, agendamento.Email, agendamento.DataAgendamento.ToString("dd/MM/yyyy"), agendamento.HoraAgendamento);
-                DisplayAlert("Agendamento", mensagem, "Ok");
+                var confirma = await DisplayAlert("Salvar Agendamento", "Deseja mesmo enviar o agendamento?", "Sim", "Não");
+
+                if (confirma)
+                {
+                    string mensagem = string.Format("Nome: {0} Fone: {1} E-mail: {2} Data Agendamento: {3} Hora Agendamento: {4}", agendamento.Nome, agendamento.Fone, agendamento.Email, agendamento.DataAgendamento.ToString("dd/MM/yyyy"), agendamento.HoraAgendamento);
+                    DisplayAlert("Agendamento", mensagem, "Ok");
+                }
             });
         }
 
