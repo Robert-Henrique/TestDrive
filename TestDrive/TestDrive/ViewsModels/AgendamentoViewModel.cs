@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace TestDrive.ViewsModels
 {
-    public class AgendamentoViewModel
+    public class AgendamentoViewModel : BaseViewModel
     {
         const string URL_POST_AGENDAMENTO = "https://aluracar.herokuapp.com/salvaragendamento";
 
@@ -35,6 +36,8 @@ namespace TestDrive.ViewsModels
             set
             {
                 Agendamento.Nome = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
             }
         }
 
@@ -47,6 +50,8 @@ namespace TestDrive.ViewsModels
             set
             {
                 Agendamento.Fone = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
             }
         }
 
@@ -59,6 +64,8 @@ namespace TestDrive.ViewsModels
             set
             {
                 Agendamento.Email = value;
+                OnPropertyChanged();
+                ((Command)AgendarCommand).ChangeCanExecute();
             }
         }
 
@@ -96,13 +103,33 @@ namespace TestDrive.ViewsModels
             AgendarCommand = new Command(() =>
             {
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "Agendamento");
+            }, () =>
+            {
+                return !string.IsNullOrEmpty(this.Nome) &&
+                       !string.IsNullOrEmpty(this.Fone) &&
+                       !string.IsNullOrEmpty(this.Email);
             });
         }
 
         public async void SalvarAgendamento()
         {
             HttpClient cliente = new HttpClient();
-            var conteudo = new StringContent("", Encoding.UTF8, "application/json");
+
+            var dataHoraAgendamento = new DateTime(
+                DataAgendamento.Year, DataAgendamento.Month, DataAgendamento.Day,
+                HoraAgendamento.Hours, HoraAgendamento.Minutes, HoraAgendamento.Seconds);
+
+            var json = JsonConvert.SerializeObject(new
+            {
+                nome = Nome,
+                fone = Fone,
+                email = Email,
+                carro = Veiculo.Nome,
+                preco = Veiculo.Preco,
+                dataAgendamento = dataHoraAgendamento
+            });
+
+            var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
 
