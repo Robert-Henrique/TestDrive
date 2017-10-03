@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestDrive.Views.LoginView">
 
-    <StackLayout>
+    <StackLayout VerticalOptions="Center" Margin="64">
+        <Image Source="aluracar.png"></Image>
         <Entry Placeholder="Usuário"></Entry>
-        <Entry Placeholder="Senha"></Entry>
+        <Entry Placeholder="Senha" IsPassword="true"></Entry>
+        <Button Text="Entrar" Clicked="Button_Clicked"></Button>
     </StackLayout>
 </ContentPage>
