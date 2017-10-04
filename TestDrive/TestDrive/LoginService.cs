@@ -31,6 +31,7 @@ namespace TestDrive
                 catch
                 {
                     MessagingCenter.Send<LoginException>(new LoginException("Occoreu um erro de comunicação com o servidor! " +
+                                                                            "Por favor verifique sua conexão e tente novamente mais tarde"), "FalhaLogin");
                 }
 
                 if (resultado.IsSuccessStatusCode)
@@ -48,4 +49,4 @@ public class LoginException : Exception
     {
     }
 }
-}
+

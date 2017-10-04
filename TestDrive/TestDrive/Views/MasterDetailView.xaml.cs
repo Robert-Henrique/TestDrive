@@ -14,7 +14,7 @@ namespace TestDrive.Views
     {
 		public MasterDetailView ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }
