@@ -14,7 +14,11 @@ namespace TestDrive.ViewsModels
         public string Usuario
         {
             get { return usuario; }
-            set { usuario = value; }
+            set
+            {
+                usuario = value;
+                ((Command)EntrarCommand).ChangeCanExecute();
+            }
         }
 
         private string senha;
@@ -22,7 +26,11 @@ namespace TestDrive.ViewsModels
         public string Senha
         {
             get { return senha; }
-            set { senha = value; }
+            set
+            {
+                senha = value;
+                ((Command)EntrarCommand).ChangeCanExecute();
+            }
         }
 
         public ICommand EntrarCommand { get; private set; }
@@ -32,6 +40,10 @@ namespace TestDrive.ViewsModels
             EntrarCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+            }, () =>
+            {
+                return !string.IsNullOrEmpty(Usuario) &&
+                       !string.IsNullOrEmpty(Senha);
             });
         }
     }
