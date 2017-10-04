@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using TestDrive.Models;
@@ -37,14 +38,26 @@ namespace TestDrive.ViewsModels
 
         public LoginViewModel()
         {
-            EntrarCommand = new Command(() =>
+            EntrarCommand = new Command(async () =>
             {
-                MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+                using (var cliente = new HttpClient())
+                {
+                    var camposFormulario = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string, string>("email", "joao@alura.com.br"),
+                        new KeyValuePair<string, string>("senha", "alura123")
+                    });
+
+                    cliente.BaseAddress = new Uri("https://aluracar.herokuapp.com");
+                    await cliente.PostAsync("/login", camposFormulario);
+
+                    MessagingCenter.Send<Usuario>(new Usuario(), "SucessoLogin");
+                };
             }, () =>
-            {
-                return !string.IsNullOrEmpty(Usuario) &&
-                       !string.IsNullOrEmpty(Senha);
-            });
+                {
+                    return !string.IsNullOrEmpty(Usuario) &&
+                           !string.IsNullOrEmpty(Senha);
+                });
         }
     }
 }
