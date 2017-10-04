@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\DetalheViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\ListagemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MasterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AgendamentoView.xaml.cs">
       <DependentUpon>AgendamentoView.xaml</DependentUpon>
       <SubType>Code</SubType>

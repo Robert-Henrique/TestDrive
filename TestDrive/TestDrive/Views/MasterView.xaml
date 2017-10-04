@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestDrive.Views.MasterView"
              Title="Perfil">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Label Text="João da silva" />
-        <Label Text="joao@alura.com.br" />
-    </StackLayout>
+    <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="{Binding Nome}" />
+            <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
+            <Label Text="{Binding Email}" />
+            <Button Text="Perfil"></Button>
+        </StackLayout>
+    </Frame>
 </ContentPage>
