@@ -60,7 +60,7 @@ namespace TestDrive.ViewsModels
         public ICommand SalvarCommand { get; private set; }
         public ICommand EditarCommand { get; private set; }
         public ICommand TirarFotoCommand { get; private set; }
-        
+
 
         public MasterViewModel(Usuario usuario)
         {
@@ -90,6 +90,11 @@ namespace TestDrive.ViewsModels
             TirarFotoCommand = new Command(() =>
             {
                 DependencyService.Get<ICamera>().TirarFoto();
+            });
+
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada", (bytes) =>
+            {
+
             });
         }
     }
