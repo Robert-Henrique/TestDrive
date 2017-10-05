@@ -10,10 +10,12 @@
                     <Label Text="{Binding Nome}" />
                     <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
                     <Label Text="{Binding Email}" />
-                    <Button Text="Perfil"></Button>
+                    <Button Text="Perfil" Command="{Binding EditarPerfilCommand}"></Button>
                 </StackLayout>
             </Frame>
         </ContentPage>
-        <ContentPage Title="Editar"></ContentPage>
+        <ContentPage Title="Editar">
+            
+        </ContentPage>
     </TabbedPage.Children>
 </TabbedPage>
