@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace TestDrive.ViewsModels
 {
-    public class MasterViewModel
+    public class MasterViewModel : BaseViewModel
     {
 
         public string Nome
@@ -33,18 +33,23 @@ namespace TestDrive.ViewsModels
             get { return this.usuario.email; }
             set { this.usuario.email = value; }
         }
-        
+
         private bool editando = false;
         public bool Editando
         {
-            get { return editando = false; }
-            private set { editando = value; }
+            get { return editando; }
+            private set
+            {
+                editando = value;
+                OnPropertyChanged(nameof(Editando));
+            }
         }
 
         private readonly Usuario usuario;
 
         public ICommand EditarPerfilCommand { get; private set; }
-        public ICommand SalvarPerfilCommand { get; private set; }
+        public ICommand SalvarCommand { get; private set; }
+        public ICommand EditarCommand { get; private set; }
 
         public MasterViewModel(Usuario usuario)
         {
@@ -60,9 +65,15 @@ namespace TestDrive.ViewsModels
                 MessagingCenter.Send<Usuario>(usuario, "EditarPerfil");
             });
 
-            SalvarPerfilCommand = new Command(() =>
+            SalvarCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
+            });
+
+            EditarCommand = new Command(() =>
+            {
+                this.Editando = true;
+                //MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
             });
         }
     }

@@ -27,8 +27,8 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <Button Text="Salvar" Command="{Binding SalvarPerfilCommand}"></Button>
-                    <Button Text="Editar"></Button>
+                    <Button Text="Salvar" Command="{Binding SalvarCommand}"></Button>
+                    <Button Text="Editar" Command="{Binding EditarCommand}"></Button>
                 </StackLayout>
             </Frame>
         </ContentPage>
