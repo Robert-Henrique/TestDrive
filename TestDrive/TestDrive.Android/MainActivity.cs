@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using TestDrive.Media;
 using TestDrive.Droid;
+using Xamarin.Forms;
+using Android.Content;
+using Android.Provider;
 
 [assembly:Xamarin.Forms.Dependency(typeof(MainActivity))]
 namespace TestDrive.Droid
@@ -19,7 +22,10 @@ namespace TestDrive.Droid
     {
         public void TirarFoto()
         {
-            throw new NotImplementedException();
+            var intent = new Intent(MediaStore.ActionImageCapture);
+
+            var activity = Forms.Context as Activity;
+            activity.StartActivityForResult(intent, 0);
         }
 
         protected override void OnCreate(Bundle bundle)
