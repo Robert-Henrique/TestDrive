@@ -15,7 +15,21 @@
             </Frame>
         </ContentPage>
         <ContentPage Title="Editar">
-            
+            <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <TableView>
+                        <TableRoot>
+                            <TableSection Title="Dados Pessoais">
+                                <EntryCell Placeholder="Nome"></EntryCell>
+                                <EntryCell Placeholder="Data de Nascimento"></EntryCell>
+                                <EntryCell Placeholder="Telefone"></EntryCell>
+                                <EntryCell Placeholder="E-mail"></EntryCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                    <Button Text="Salvar"></Button>
+                </StackLayout>
+            </Frame>
         </ContentPage>
     </TabbedPage.Children>
 </TabbedPage>
