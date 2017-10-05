@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 
 namespace TestDrive.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterView : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MasterView : ContentPage
+	{
         public MasterViewModel ViewModel { get; set; }
 
         public MasterView(Usuario usuario)
