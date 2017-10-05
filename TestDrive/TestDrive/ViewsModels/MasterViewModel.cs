@@ -67,6 +67,7 @@ namespace TestDrive.ViewsModels
 
             SalvarCommand = new Command(() =>
             {
+                this.Editando = false;
                 MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
             });
 
