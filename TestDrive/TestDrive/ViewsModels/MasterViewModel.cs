@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using TestDrive.Media;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -58,6 +59,8 @@ namespace TestDrive.ViewsModels
         public ICommand EditarPerfilCommand { get; private set; }
         public ICommand SalvarCommand { get; private set; }
         public ICommand EditarCommand { get; private set; }
+        public ICommand TirarFotoCommand { get; private set; }
+        
 
         public MasterViewModel(Usuario usuario)
         {
@@ -82,7 +85,11 @@ namespace TestDrive.ViewsModels
             EditarCommand = new Command(() =>
             {
                 this.Editando = true;
-                //MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
+            });
+
+            TirarFotoCommand = new Command(() =>
+            {
+                DependencyService.Get<ICamera>().TirarFoto();
             });
         }
     }
