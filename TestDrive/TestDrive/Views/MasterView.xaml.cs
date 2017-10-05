@@ -22,19 +22,34 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            AssinarMensagens();
+        }
 
+        private void AssinarMensagens()
+        {
             MessagingCenter.Subscribe<Usuario>(this, "EditarPerfil",
+                            (usuario) =>
+                            {
+                                this.CurrentPage = this.Children[1];
+                            });
+
+            MessagingCenter.Subscribe<Usuario>(this, "SucessoSalvarUsuario",
                 (usuario) =>
                 {
-                    this.CurrentPage = this.Children[1];
+                    this.CurrentPage = this.Children[0];
                 });
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            CancelarMensagens();
+        }
 
+        private void CancelarMensagens()
+        {
             MessagingCenter.Unsubscribe<Usuario>(this, "EditarPerfil");
+            MessagingCenter.Unsubscribe<Usuario>(this, "SucessoSalvarPerfil");
         }
     }
 }

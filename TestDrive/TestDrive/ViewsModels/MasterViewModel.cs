@@ -16,25 +16,53 @@ namespace TestDrive.ViewsModels
             set { this.usuario.nome = value; }
         }
 
-        private string email = "meuemail@gmail.com";
+        public string DataNascimento
+        {
+            get { return this.usuario.dataNascimento; }
+            set { this.usuario.dataNascimento = value; }
+        }
+
+        public string Telefone
+        {
+            get { return this.usuario.telefone; }
+            set { this.usuario.telefone = value; }
+        }
 
         public string Email
         {
             get { return this.usuario.email; }
             set { this.usuario.email = value; }
         }
+        
+        private bool editando = false;
+        public bool Editando
+        {
+            get { return editando = false; }
+            private set { editando = value; }
+        }
 
         private readonly Usuario usuario;
 
         public ICommand EditarPerfilCommand { get; private set; }
+        public ICommand SalvarPerfilCommand { get; private set; }
 
         public MasterViewModel(Usuario usuario)
         {
             this.usuario = usuario;
 
+            DefinirComandos(usuario);
+        }
+
+        private void DefinirComandos(Usuario usuario)
+        {
             EditarPerfilCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "EditarPerfil");
+            });
+
+            SalvarPerfilCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
             });
         }
     }
