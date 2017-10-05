@@ -45,6 +45,14 @@ namespace TestDrive.ViewsModels
             }
         }
 
+        private ImageSource fotoPerfil = "perfil.png";
+
+        public ImageSource FotoPerfil
+        {
+            get { return fotoPerfil; }
+            private set { fotoPerfil = value; }
+        }
+
         private readonly Usuario usuario;
 
         public ICommand EditarPerfilCommand { get; private set; }
