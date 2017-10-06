@@ -6,9 +6,9 @@ namespace TestDrive.Models
 {
     public class Agendamento
     {
-        public string Nome { get; private set; }
-        public string Fone { get; private set; }
-        public string Email { get; private set; }
+        public string Nome { get; set; }
+        public string Fone { get; set; }
+        public string Email { get; set; }
         public string Modelo { get; set; }
         public decimal Preco { get; set; }
 

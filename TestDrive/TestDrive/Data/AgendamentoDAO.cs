@@ -15,5 +15,10 @@ namespace TestDrive.Data
             this.conexao = conexao;
             conexao.CreateTable<Agendamento>();
         }
+
+        public void Salvar(Agendamento agendamento)
+        {
+            conexao.Insert(agendamento);
+        }
     }
 }

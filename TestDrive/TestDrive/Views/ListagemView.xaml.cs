@@ -12,29 +12,41 @@ namespace TestDrive.Views
     public partial class ListagemView : ContentPage
     {
         public  ListagemViewModel viewModel { get; set; }
+        readonly Usuario usuario;
 
-        public ListagemView()
+        public ListagemView(Usuario usuario)
         {
             InitializeComponent();
             this.viewModel = new ListagemViewModel();
+            this.usuario = usuario;
             this.BindingContext = viewModel;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            AssinarMensagens();
+
+            await this.viewModel.GetVeiculos();
+        }
+
+        private void AssinarMensagens()
+        {
             MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado",
             (veiculo) =>
             {
-                Navigation.PushAsync(new DetalheView(veiculo));
+                Navigation.PushAsync(new DetalheView(veiculo, usuario));
             });
-
-            await this.viewModel.GetVeiculos();
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            CancelarAssinatura();
+        }
+
+        private void CancelarAssinatura()
+        {
             MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
         }
     }
