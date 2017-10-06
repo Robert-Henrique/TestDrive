@@ -12,15 +12,19 @@ using Android.Widget;
 using SQLite;
 using TestDrive.Data;
 using TestDrive.Droid;
+using System.IO;
 
 [assembly: Xamarin.Forms.Dependency(typeof(SQLite_android))]
 namespace TestDrive.Droid
 {
     public class SQLite_android : ISQLite
     {
+        private const string nomeArquivoDB = "Agendamento.db3";
+
         public SQLiteConnection PegarConexao()
         {
-            return new SQLite.SQLiteConnection("Agendamento.db3");
+            var caminhoDB = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.Path, nomeArquivoDB);
+            return new SQLite.SQLiteConnection(caminhoDB);
         }
     }
 }
