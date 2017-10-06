@@ -142,11 +142,12 @@ namespace TestDrive.ViewsModels
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");
         }
 
-        private static void SalvarAgendamentoDB()
+        private void SalvarAgendamentoDB()
         {
             using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
             {
-
+                AgendamentoDAO dao = new AgendamentoDAO(conexao);
+                dao.Salvar(new Agendamento(Nome, Fone, Email, Veiculo.Nome, Veiculo.Preco));
             }
         }
     }
