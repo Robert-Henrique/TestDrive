@@ -28,9 +28,16 @@ namespace TestDrive.Views
 
             MessagingCenter.Subscribe<Usuario>(this, "MeusAgendamentos", (usuario) =>
             {
-                this.Detail = new AgendamentosUsuarioView();
+                this.Detail = new NavigationPage(new AgendamentosUsuarioView());
                 this.IsPresented = false;
             });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            MessagingCenter.Unsubscribe<Usuario>(this, "MeusAgendamentos");
         }
     }
 }
