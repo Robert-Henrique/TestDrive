@@ -11,7 +11,7 @@
             </converters:AgendamentoConfirmadoConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ListView ItemsSource="{Binding Lista}" Margin="25">
+    <ListView ItemsSource="{Binding Lista}" Margin="25" SelectedItem="{Binding AgendamentoSelecionado}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

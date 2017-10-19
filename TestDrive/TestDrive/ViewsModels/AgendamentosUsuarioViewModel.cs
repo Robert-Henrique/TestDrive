@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using TestDrive.Data;
 using TestDrive.Models;
@@ -24,15 +25,31 @@ namespace TestDrive.ViewsModels
             }
         }
 
+        private Agendamento agendamentoSelecionado;
+
+        public Agendamento AgendamentoSelecionado
+        {
+            get { return agendamentoSelecionado; }
+            set
+            {
+                MessagingCenter.Send<Agendamento>(agendamentoSelecionado, "AgendamentoSelecionado");
+                agendamentoSelecionado = value;
+            }
+        }
+
+
         public AgendamentosUsuarioViewModel()
         {
             using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
             {
                 AgendamentoDAO dao = new AgendamentoDAO(conexao);
                 var listaDB = dao.Lista;
+
+                var query = listaDB.OrderBy(l => l.DataAgendamento).ThenBy(l => l.HoraAgendamento);
+
                 this.Lista.Clear();
 
-                foreach (var itemDB in listaDB)
+                foreach (var itemDB in query)
                     this.Lista.Add(itemDB);
             }
         }
