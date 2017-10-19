@@ -132,10 +132,10 @@ namespace TestDrive.ViewsModels
             var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
             var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
-
+            this.Agendamento.Confirmado = resposta.IsSuccessStatusCode;
             SalvarAgendamentoDB();
 
-            if (resposta.IsSuccessStatusCode)
+            if (this.Agendamento.Confirmado)
                 MessagingCenter.Send<Agendamento>(this.Agendamento, "SucessoAgendamento");
             else
                 MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");

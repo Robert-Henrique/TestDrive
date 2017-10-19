@@ -14,6 +14,7 @@ namespace TestDrive.Models
         public string Email { get; set; }
         public string Modelo { get; set; }
         public decimal Preco { get; set; }
+        public bool Confirmado { get; set; }
 
         DateTime dataAgendamento = DateTime.Now;
         public DateTime DataAgendamento
