@@ -52,5 +52,10 @@ namespace TestDrive.Models
             this.DataAgendamento = dataAgendamento;
             this.HoraAgendamento = horaAgendamento;
         }
+
+        public Agendamento()
+        {
+
+        }
     }
 }
