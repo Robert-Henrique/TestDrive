@@ -40,6 +40,16 @@ namespace TestDrive.Views
                     this._viewModel.AtualizarLista();
                 }
             });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "SucessoAgendamento", async (agendamento) =>
+            {
+                await DisplayAlert("Reenviar", "Reenvio com sucesso!", "ok");
+            });
+
+            MessagingCenter.Subscribe<Agendamento>(this, "FalhaAgendamento", async (agendamento) =>
+            {
+                await DisplayAlert("Reenviar", "Falha ao reenviar!", "ok");
+            });
         }
 
         protected override void OnDisappearing()
@@ -47,6 +57,8 @@ namespace TestDrive.Views
             base.OnDisappearing();
 
             MessagingCenter.Unsubscribe<Agendamento>(this, "agendamentoSelecionado");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "SucessoAgendamento");
+            MessagingCenter.Unsubscribe<Agendamento>(this, "FalhaAgendamento");
         }
     }
 }
