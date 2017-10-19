@@ -66,6 +66,7 @@ namespace TestDrive.ViewsModels
         public ICommand EditarCommand { get; private set; }
         public ICommand TirarFotoCommand { get; private set; }
         public ICommand MeusAgendamentosCommand { get; private set; }
+        public ICommand NovoAgendamentoCommand { get; private set; }
 
         public MasterViewModel(Usuario usuario)
         {
@@ -102,6 +103,11 @@ namespace TestDrive.ViewsModels
             MeusAgendamentosCommand = new Command(() =>
             {
                 MessagingCenter.Send<Usuario>(usuario, "MeusAgendamentos");
+            });
+
+            NovoAgendamentoCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "NovoAgendamento");
             });
         }
 
