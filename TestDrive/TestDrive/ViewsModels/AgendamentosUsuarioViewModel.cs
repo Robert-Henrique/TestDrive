@@ -32,13 +32,21 @@ namespace TestDrive.ViewsModels
             get { return agendamentoSelecionado; }
             set
             {
-                MessagingCenter.Send<Agendamento>(agendamentoSelecionado, "AgendamentoSelecionado");
-                agendamentoSelecionado = value;
+                if (value != null)
+                {
+                    agendamentoSelecionado = value;
+                    MessagingCenter.Send<Agendamento>(agendamentoSelecionado, "AgendamentoSelecionado");
+                }
             }
         }
 
 
         public AgendamentosUsuarioViewModel()
+        {
+            AtualizarLista();
+        }
+
+        public void AtualizarLista()
         {
             using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
             {
@@ -50,7 +58,7 @@ namespace TestDrive.ViewsModels
                 this.Lista.Clear();
 
                 foreach (var itemDB in query)
-                    this.Lista.Add(itemDB);
+                    Lista.Add(itemDB);
             }
         }
     }
