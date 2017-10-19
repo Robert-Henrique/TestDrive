@@ -30,6 +30,14 @@ namespace TestDrive.Models
 
         public TimeSpan HoraAgendamento { get; set; }
 
+        public string DataFormatada
+        {
+            get
+            {
+                return DataAgendamento.Add(HoraAgendamento).ToString("dd/MM/yyyy HH:mm");
+            }
+        }
+
         public Agendamento(string nome, string fone, string email, string modelo, decimal preco)
         {
             this.Nome = nome;
@@ -37,6 +45,12 @@ namespace TestDrive.Models
             this.Email = email;
             this.Modelo = modelo;
             this.Preco = preco;
+        }
+
+        public Agendamento(string nome, string fone, string email, string modelo, decimal preco, DateTime dataAgendamento, TimeSpan horaAgendamento) : this(nome, fone, email, modelo, preco)
+        {
+            this.DataAgendamento = dataAgendamento;
+            this.HoraAgendamento = horaAgendamento;
         }
     }
 }

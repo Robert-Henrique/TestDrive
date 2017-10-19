@@ -18,8 +18,8 @@ namespace TestDrive.Views
 
             this.listViewAgendamentos.ItemsSource = new List<Agendamento>
             {
-                new Agendamento("João da Silva", "1234-5678", "joao@alura.com.br", "Astra 2.0", 17000),
-                new Agendamento("Robert Henrique", "1234-5678", "joao@alura.com.br", "Celta ", 37000),
+                new Agendamento("João da Silva", "1234-5678", "joao@alura.com.br", "Astra 2.0", 17000, DateTime.Now, new TimeSpan(16, 30, 0)),
+                new Agendamento("Robert Henrique", "1234-5678", "joao@alura.com.br", "Celta ", 37000, DateTime.Now, new TimeSpan(16, 00, 0)),
             };
 		}
 	}
